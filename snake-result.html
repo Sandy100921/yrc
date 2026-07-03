@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>霓虹贪吃蛇 - 结算</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-stars" id="bgStars"></div>
+
+  <main class="page">
+    <div class="card">
+      <div class="result-icon" id="resultIcon">🐍</div>
+      <h2 style="font-family: Orbitron, sans-serif; text-align: center; color: var(--neon-pink); margin-bottom: 0.25rem;">游戏结束</h2>
+
+      <div class="new-record" id="newRecord">🏆 新纪录！</div>
+
+      <div class="result-score" id="finalScore">0</div>
+      <p class="rank-text">你的称号：<span id="rankText">蛋仔</span></p>
+
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="label">蛇身长度</div>
+          <div class="value" id="lengthCount" style="color: var(--neon-cyan);">0</div>
+        </div>
+        <div class="result-item">
+          <div class="label">历史最高</div>
+          <div class="value" id="highScore" style="color: var(--neon-yellow);">0</div>
+        </div>
+      </div>
+
+      <a href="snake-play.html" class="btn btn-primary">再来一局</a>
+      <a href="snake.html" class="btn btn-secondary">返回首页</a>
+      <a href="index.html" class="btn btn-secondary">游戏大厅</a>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script>
+    const result = getSessionResult('snake');
+    if (!result) {
+      window.location.href = 'snake.html';
+    } else {
+      document.getElementById('finalScore').textContent = result.score;
+      document.getElementById('lengthCount').textContent = result.length;
+      document.getElementById('highScore').textContent = getHighScore('snake');
+      document.getElementById('rankText').textContent = result.rank;
+      if (result.isNewRecord) {
+        document.getElementById('newRecord').classList.add('show');
+        document.getElementById('resultIcon').textContent = '🏆';
+      }
+      if (result.score >= 120) document.getElementById('resultIcon').textContent = '🚀';
+    }
+
+    const container = document.getElementById('bgStars');
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('span');
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      container.appendChild(star);
+    }
+  </script>
+</body>
+</html>

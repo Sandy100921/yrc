@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>霓虹记忆 - 游戏中</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-stars" id="bgStars"></div>
+
+  <header class="game-header">
+    <a href="memory.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem;">← 退出</a>
+    <div class="stat-group">
+      <div class="stat">
+        <div class="stat-label">步数</div>
+        <div class="stat-value score" id="movesValue">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">配对</div>
+        <div class="stat-value combo" id="pairsValue">0/8</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">用时</div>
+        <div class="stat-value time" id="timeValue">0</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page memory-page">
+    <div class="memory-board" id="memoryBoard"></div>
+    <button class="btn btn-secondary" id="restartBtn" style="max-width: 200px; margin-top: 1.5rem;">重新开始</button>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/memory.js"></script>
+  <script>
+    const container = document.getElementById('bgStars');
+    for (let i = 0; i < 40; i++) {
+      const star = document.createElement('span');
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      container.appendChild(star);
+    }
+  </script>
+</body>
+</html>

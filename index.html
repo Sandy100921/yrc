@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>霓虹街机 - 游戏大厅</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-stars" id="bgStars"></div>
+
+  <main class="page">
+    <h1 class="logo">霓虹街机</h1>
+    <p class="subtitle">Neon Arcade Collection</p>
+
+    <div class="hub-grid">
+      <a href="star.html" class="game-card">
+        <div class="game-card-icon">⭐</div>
+        <div class="game-card-title">霓虹接星</div>
+        <p class="game-card-desc">点击坠落的星星，连击得分。3 条生命，坚持 60 秒！</p>
+        <div class="game-card-score">最高分：<span id="starScore">0</span></div>
+      </a>
+
+      <a href="memory.html" class="game-card">
+        <div class="game-card-icon">🧠</div>
+        <div class="game-card-title">霓虹记忆</div>
+        <p class="game-card-desc">翻牌配对霓虹符号，步数越少、用时越短，得分越高。</p>
+        <div class="game-card-score">最高分：<span id="memoryScore">0</span></div>
+      </a>
+
+      <a href="snake.html" class="game-card">
+        <div class="game-card-icon">🐍</div>
+        <div class="game-card-title">霓虹贪吃蛇</div>
+        <p class="game-card-desc">操控光蛇吞噬能量块，越长越快，撞墙或咬到自己就结束。</p>
+        <div class="game-card-score">最高分：<span id="snakeScore">0</span></div>
+      </a>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script>
+    document.getElementById('starScore').textContent = getHighScore('star');
+    document.getElementById('memoryScore').textContent = getHighScore('memory');
+    document.getElementById('snakeScore').textContent = getHighScore('snake');
+
+    const container = document.getElementById('bgStars');
+    for (let i = 0; i < 60; i++) {
+      const star = document.createElement('span');
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      container.appendChild(star);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>霓虹记忆 - 结算</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-stars" id="bgStars"></div>
+
+  <main class="page">
+    <div class="card">
+      <div class="result-icon" id="resultIcon">🧠</div>
+      <h2 style="font-family: Orbitron, sans-serif; text-align: center; color: var(--neon-purple); margin-bottom: 0.25rem;">挑战完成</h2>
+
+      <div class="new-record" id="newRecord">🏆 新纪录！</div>
+
+      <div class="result-score" id="finalScore">0</div>
+      <p class="rank-text">你的称号：<span id="rankText">记忆新手</span></p>
+
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="label">步数</div>
+          <div class="value" id="movesCount" style="color: var(--neon-cyan);">0</div>
+        </div>
+        <div class="result-item">
+          <div class="label">用时</div>
+          <div class="value" id="timeCount" style="color: var(--neon-yellow);">0s</div>
+        </div>
+        <div class="result-item" style="grid-column: span 2;">
+          <div class="label">历史最高</div>
+          <div class="value" id="highScore" style="color: var(--neon-pink);">0</div>
+        </div>
+      </div>
+
+      <a href="memory-play.html" class="btn btn-primary">再来一局</a>
+      <a href="memory.html" class="btn btn-secondary">返回首页</a>
+      <a href="index.html" class="btn btn-secondary">游戏大厅</a>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script>
+    const result = getSessionResult('memory');
+    if (!result) {
+      window.location.href = 'memory.html';
+    } else {
+      document.getElementById('finalScore').textContent = result.score;
+      document.getElementById('movesCount').textContent = result.moves;
+      document.getElementById('timeCount').textContent = result.time + 's';
+      document.getElementById('highScore').textContent = getHighScore('memory');
+      document.getElementById('rankText').textContent = result.rank;
+      if (result.isNewRecord) {
+        document.getElementById('newRecord').classList.add('show');
+        document.getElementById('resultIcon').textContent = '🏆';
+      }
+    }
+
+    const container = document.getElementById('bgStars');
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('span');
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      container.appendChild(star);
+    }
+  </script>
+</body>
+</html>

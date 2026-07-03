@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>霓虹贪吃蛇 - 首页</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-stars" id="bgStars"></div>
+
+  <main class="page">
+    <h1 class="logo">霓虹贪吃蛇</h1>
+    <p class="subtitle">Neon Snake</p>
+
+    <div class="card">
+      <p style="color: var(--text-dim); text-align: center; line-height: 1.7; margin-bottom: 0.5rem;">
+        操控光蛇吞噬粉色能量块，每吃一个得 10 分。<br>
+        蛇身越长、速度越快，小心别撞墙或咬到自己！
+      </p>
+
+      <ul class="rules-list">
+        <li><strong>方向键 / WASD</strong> — 控制移动</li>
+        <li><strong>吃能量块</strong> — +10 分，蛇身变长</li>
+        <li><strong>撞墙或自撞</strong> — 游戏结束</li>
+        <li><strong>手机端</strong> — 使用屏幕方向键</li>
+      </ul>
+
+      <a href="snake-play.html" class="btn btn-primary">开始游戏</a>
+
+      <div class="high-score-box">
+        <div class="high-score-label">历史最高分</div>
+        <div class="high-score-value" id="highScore">0</div>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">← 返回游戏大厅</a>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script>
+    document.getElementById('highScore').textContent = getHighScore('snake');
+
+    const container = document.getElementById('bgStars');
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('span');
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      container.appendChild(star);
+    }
+  </script>
+</body>
+</html>

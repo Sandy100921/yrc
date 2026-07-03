@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>霓虹记忆 - 首页</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-stars" id="bgStars"></div>
+
+  <main class="page">
+    <h1 class="logo">霓虹记忆</h1>
+    <p class="subtitle">Neon Memory Match</p>
+
+    <div class="card">
+      <p style="color: var(--text-dim); text-align: center; line-height: 1.7; margin-bottom: 0.5rem;">
+        翻开卡牌，找到 8 对相同的霓虹符号。<br>
+        记住位置，用最少的步数和时间完成挑战！
+      </p>
+
+      <ul class="rules-list">
+        <li><strong>点击卡牌</strong> — 每次翻开两张</li>
+        <li><strong>配对成功</strong> — 卡牌保持正面</li>
+        <li><strong>配对失败</strong> — 卡牌自动翻回</li>
+        <li><strong>计分规则</strong> — 1000 − 步数×12 − 秒数×4</li>
+      </ul>
+
+      <a href="memory-play.html" class="btn btn-primary">开始游戏</a>
+
+      <div class="high-score-box">
+        <div class="high-score-label">历史最高分</div>
+        <div class="high-score-value" id="highScore">0</div>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">← 返回游戏大厅</a>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script>
+    document.getElementById('highScore').textContent = getHighScore('memory');
+
+    const container = document.getElementById('bgStars');
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('span');
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      container.appendChild(star);
+    }
+  </script>
+</body>
+</html>

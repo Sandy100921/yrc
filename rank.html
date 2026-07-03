@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>霓虹接星 - 称号说明</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .rank-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.5rem;
+    }
+    .rank-table th,
+    .rank-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .rank-table th {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--neon-cyan);
+      text-transform: uppercase;
+    }
+    .rank-table td:last-child {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--neon-yellow);
+    }
+    .rank-table tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-stars" id="bgStars"></div>
+
+  <main class="page">
+    <h1 class="logo" style="font-size: clamp(1.8rem, 6vw, 2.8rem);">称号榜</h1>
+    <p class="subtitle">根据单局得分评定</p>
+
+    <div class="card">
+      <table class="rank-table">
+        <thead>
+          <tr>
+            <th>称号</th>
+            <th>所需分数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>🚀 星际大师</td><td>500+</td></tr>
+          <tr><td>⭐ 接星高手</td><td>300+</td></tr>
+          <tr><td>✨ 霓虹猎手</td><td>150+</td></tr>
+          <tr><td>🌟 见习收集者</td><td>50+</td></tr>
+          <tr><td>🌙 宇宙新手</td><td>0+</td></tr>
+        </tbody>
+      </table>
+
+      <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+        连击是高分的关键！每多 1 连击额外 +5 分。保持节奏，别漏接星星。
+      </p>
+
+      <div class="high-score-box">
+        <div class="high-score-label">你的历史最高</div>
+        <div class="high-score-value" id="highScore">0</div>
+      </div>
+
+      <a href="game.html" class="btn btn-primary">去挑战</a>
+      <a href="star.html" class="btn btn-secondary">返回首页</a>
+      <a href="index.html" class="btn btn-secondary">游戏大厅</a>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script>
+    document.getElementById('highScore').textContent = getHighScore('star');
+
+    const container = document.getElementById('bgStars');
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('span');
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      container.appendChild(star);
+    }
+  </script>
+</body>
+</html>

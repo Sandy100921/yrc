@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>霓虹接星 - 首页</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-stars" id="bgStars"></div>
+
+  <main class="page">
+    <h1 class="logo">霓虹接星</h1>
+    <p class="subtitle">Neon Star Catch</p>
+
+    <div class="card">
+      <p style="color: var(--text-dim); text-align: center; line-height: 1.7; margin-bottom: 0.5rem;">
+        星星从天际坠落，在它们落地前点击接住！<br>
+        连击越多，得分越高。你有 3 条生命，坚持 60 秒！
+      </p>
+
+      <ul class="rules-list">
+        <li><strong>点击星星</strong> — 基础 +10 分，连击额外加分</li>
+        <li><strong>漏接星星</strong> — 扣除 1 条生命</li>
+        <li><strong>连击 ×5 / ×10</strong> — 触发特殊提示</li>
+        <li><strong>Esc 键</strong> — 游戏中暂停</li>
+      </ul>
+
+      <a href="game.html" class="btn btn-primary">开始游戏</a>
+      <a href="rank.html" class="btn btn-secondary">称号说明</a>
+
+      <div class="high-score-box">
+        <div class="high-score-label">历史最高分</div>
+        <div class="high-score-value" id="highScore">0</div>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">← 返回游戏大厅</a>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script>
+    document.getElementById('highScore').textContent = getHighScore('star');
+
+    const container = document.getElementById('bgStars');
+    for (let i = 0; i < 60; i++) {
+      const star = document.createElement('span');
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      container.appendChild(star);
+    }
+  </script>
+</body>
+</html>
